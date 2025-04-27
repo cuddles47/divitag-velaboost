@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import CategoryIcon from "@/shared/components/category/CategoryIcon";
 
 import { TGroupJSON } from "@/shared/types/categories";
 import { cn } from "@/shared/utils/styling";
@@ -11,6 +12,10 @@ type TProps = {
 
 const CategoryListItem = ({ categoryData, className }: TProps) => {
   const { categories, group } = { ...categoryData };
+
+  // Debug iconUrl value
+  console.log('Category:', group.name, 'IconUrl:', group.iconUrl);
+
   return (
     <li
       className={cn(
@@ -20,18 +25,17 @@ const CategoryListItem = ({ categoryData, className }: TProps) => {
     >
       <Link href={"/list/" + group.url} className="text-gray-700 transition-colors duration-300 hover:text-gray-900">
         <div className="w-7 inline-block">
-          <Image
-            src={"/icons/" + group.iconUrl + ".svg"}
-            alt={group.name}
-            width={group.iconSize[0]}
-            height={group.iconSize[1]}
+          <CategoryIcon
+            iconName={group.iconUrl || ""}
+            size={group.iconSize?.[0] || 20}
+            className="align-middle mr-1"
           />
         </div>
         {group.name}
       </Link>
       <div>
         {categories && categories.length > 0 && (
-          <Image className={"styles.arrow"} src={"/icons/arrowIcon01.svg"} width={6} height={10} alt="" />
+          <i className="pi pi-chevron-right" style={{ fontSize: '10px' }}></i>
         )}
       </div>
       {!!categories?.length && (
