@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+// Import CSS của PrimeIcons
+import 'primeicons/primeicons.css';
 
 const outfitFont = localFont({
   src: "../assets/fonts/Outfit-VariableFont.ttf",
