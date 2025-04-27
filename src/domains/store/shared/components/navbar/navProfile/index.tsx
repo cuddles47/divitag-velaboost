@@ -1,6 +1,8 @@
-"use-client";
+"use client";
 
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 
 import { ProfileIcon } from "@/shared/components/icons/svgIcons";
 import Button from "@/shared/components/UI/button";
@@ -8,11 +10,29 @@ import { useToggleMenu } from "@/shared/hooks/useToggleMenu";
 import { cn } from "@/shared/utils/styling";
 
 const NavBarProfile = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
   const menuRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useToggleMenu(false, menuRef);
 
   const toggleMenu = () => {
     setIsActive((prev) => !prev);
+  };
+
+  const handleSignIn = () => {
+    router.push("/login");
+    setIsActive(false);
+  };
+
+  const handleSignUp = () => {
+    router.push("/register");
+    setIsActive(false);
+  };
+
+  const handleSignOut = async () => {
+    await signOut({ redirect: false });
+    setIsActive(false);
+    router.push("/");
   };
 
   return (
@@ -25,7 +45,7 @@ const NavBarProfile = () => {
         )}
       >
         <ProfileIcon width={16} className="fill-white transition-all duration-300 stroke-gray-500 stroke-2" />
-        <span className="select-none hidden lg:block">Account</span>
+        <span className="select-none hidden lg:block">{session ? session.user?.name || "Account" : "Account"}</span>
       </Button>
       {/* TODO: Create hook for menu */}
       <div
@@ -35,8 +55,17 @@ const NavBarProfile = () => {
           isActive && "scale-100 visible opacity-100"
         )}
       >
-        <Button className="border-white font-semibold text-sm hover:bg-gray-100">Sign In</Button>
-        <Button className="border-white font-semibold text-sm hover:bg-gray-100">Sign Up</Button>
+        {session ? (
+          <>
+            <Button onClick={() => router.push("/profile")} className="border-white font-semibold text-sm hover:bg-gray-100 w-full">Profile</Button>
+            <Button onClick={handleSignOut} className="border-white font-semibold text-sm hover:bg-gray-100 w-full">Sign Out</Button>
+          </>
+        ) : (
+          <>
+            <Button onClick={handleSignIn} className="border-white font-semibold text-sm hover:bg-gray-100 w-full">Sign In</Button>
+            <Button onClick={handleSignUp} className="border-white font-semibold text-sm hover:bg-gray-100 w-full">Sign Up</Button>
+          </>
+        )}
       </div>
     </div>
   );
