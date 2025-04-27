@@ -84,7 +84,7 @@ https://bitex.namvar.dev ⤴️
 #### 💾 Cloning the repository
 
 ```shell
-git clone https://github.com/HosseinNamvar/bitex.git
+git clone https://github.com/cuddles47/divitag-velaboost
 ```
 
 #### 📥 Install packages

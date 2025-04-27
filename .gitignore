@@ -40,3 +40,6 @@ next-env.d.ts
 
 # mongodb data
 /mongodb-data/
+
+# local development
+/.env
