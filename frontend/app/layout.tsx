@@ -5,7 +5,7 @@ import "./globals.css";
 import 'primeicons/primeicons.css';
 
 const outfitFont = localFont({
-  src: "../../src/assets/fonts/Outfit-VariableFont.ttf",
+  src: "../assets/fonts/Outfit-VariableFont.ttf",
   fallback: ["sans-serif", "system-ui", "arial"],
 });
 
