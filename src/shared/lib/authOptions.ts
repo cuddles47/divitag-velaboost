@@ -57,7 +57,7 @@ export const authOptions: NextAuthOptions = {
           });
 
           console.log(`Kết quả tìm kiếm: ${user ? "Tìm thấy user" : "Không tìm thấy user"}`);
-          
+
           if (!user || !user?.hashedPassword) {
             console.log("Lỗi: User không tồn tại hoặc chưa có mật khẩu");
             throw new Error("Invalid credentials");
@@ -66,15 +66,15 @@ export const authOptions: NextAuthOptions = {
           console.log("Đang so sánh mật khẩu...");
           console.log(`Input password: ${credentials.password?.substring(0, 3)}***`);
           console.log(`Stored hashed password: ${user.hashedPassword.substring(0, 10)}***`);
-          
+
           const isPasswordValid = await bcrypt.compare(credentials.password, user.hashedPassword);
           console.log(`Kết quả so sánh mật khẩu: ${isPasswordValid ? "Đúng" : "Sai"}`);
-          
+
           if (!isPasswordValid) {
             console.log("Lỗi: Mật khẩu không đúng");
             throw new Error("Invalid credentials");
           }
-          
+
           console.log("=== Đăng nhập thành công ===");
           return user;
         } catch (error) {
@@ -110,5 +110,16 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
     error: "/login"
-  }
+  },
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+  },
 };

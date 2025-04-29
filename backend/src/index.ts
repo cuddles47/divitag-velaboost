@@ -2,7 +2,10 @@ import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { corsOptions } from './config/corsOptions';
+import { corsOptions } from './config/cors-options.js';
+import authRoutes from '../api/auth/auth.routes.js';
+import { errorHandlerMiddleware } from '../api/error-handler.middleware.js';
+
 // Load environment variables
 dotenv.config();
 
@@ -14,6 +17,9 @@ const prisma = new PrismaClient();
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// API Routes
+app.use('/api/auth', authRoutes);
 
 // Simple health check endpoint
 app.get('/api/health', (req, res) => {
@@ -69,6 +75,17 @@ app.get('/api/products', async (req, res) => {
         console.error('Error fetching products:', error);
         res.status(500).json({ res: null, error: 'Failed to fetch products' });
     }
+});
+
+// Error handling middleware - Đặt sau tất cả các routes
+app.use(errorHandlerMiddleware);
+
+// 404 handler cho các routes không được định nghĩa
+app.use('*', (req, res) => {
+    res.status(404).json({
+        success: false,
+        message: `Route ${req.originalUrl} không tồn tại`
+    });
 });
 
 // Start the server

@@ -4,6 +4,24 @@ import Link from "next/link";
 import { TProductCard } from "@/shared/types/common";
 import { cn } from "@/shared/utils/styling";
 
+// Helper function to validate and format image URLs
+const formatImageUrl = (url: string): string => {
+  if (!url) return "/images/placeholder-image.png"; // Fallback image
+
+  // Check if the URL is already properly formatted (starts with / or http:// or https://)
+  if (url.startsWith('/') || url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+
+  // If the URL looks like a product name rather than a URL, use a placeholder
+  if (!url.includes('.') && !url.startsWith('/')) {
+    return "/images/placeholder-image.png";
+  }
+
+  // Prepend a slash if it's a relative path
+  return `/${url}`;
+};
+
 const ProductCard = ({
   name,
   imgUrl,
@@ -14,6 +32,11 @@ const ProductCard = ({
   isAvailable = true,
   staticWidth = false,
 }: TProductCard) => {
+  // Ensure imgUrl is always an array with at least two valid items
+  const imageUrls = Array.isArray(imgUrl) ? imgUrl : [imgUrl];
+  const firstImageUrl = formatImageUrl(imageUrls[0] || "");
+  const secondImageUrl = formatImageUrl(imageUrls[1] || imageUrls[0] || "");
+
   return (
     <Link
       href={url}
@@ -31,14 +54,14 @@ const ProductCard = ({
       )}
       <div className="imageWrapper hover:border-gray-300 w-full h-[225px] block relative rounded-xl border border-gray-200 overflow-hidden transition-all duration-500">
         <Image
-          src={imgUrl[0]}
+          src={firstImageUrl}
           alt={name}
           fill
           sizes="(max-width: 240px)"
           className="object-contain transition-all duration-400 ease-out"
         />
         <Image
-          src={imgUrl[1]}
+          src={secondImageUrl}
           alt={name}
           fill
           sizes="(max-width: 240px)"

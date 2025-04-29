@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { getCartProducts } from "@/actions/product/product";
-import { CloseIcon, ShoppingIconEmpty } from "@/shared/components/icons/svgIcons";
-import Button from "@/shared/components/UI/button";
-import { TCartListItemDB } from "@/shared/types/product";
-import { TCartItemData } from "@/shared/types/shoppingCart";
-import { cn } from "@/shared/utils/styling";
-import { RootState } from "@/store/shoppingCart";
+// Use direct paths instead of aliases to match the current project structure
+import { getCartProducts } from "../../../../../../src/actions/product/product";
+import { CloseIcon, ShoppingIconEmpty } from "../../../../../components/icons/svgIcons";
+import Button from "../../../../../components/UI/button";
+import { TCartListItemDB } from "../../../../../types/product";
+import { TCartItemData } from "../../../../../types/shoppingCart";
+import { cn } from "../../../../../utils/styling";
+import { RootState } from "../../../../../../src/store/shoppingCart";
 
 import CartItem from "./_components/cartItem";
 
@@ -31,7 +32,7 @@ const ShoppingCart = ({ isVisible, quantity, handleOnClose }: TProps) => {
           productId: item.id,
           imgUrl: process.env.IMG_URL + item.images[0],
           price: item.price,
-          quantity: localCartItems.items.find((f) => f.productId === item.id)?.quantity || 0,
+          quantity: localCartItems.items.find((f: { productId: string }) => f.productId === item.id)?.quantity || 0,
           productName: item.name,
           dealPrice: item.salePrice || undefined,
         });
@@ -40,7 +41,7 @@ const ShoppingCart = ({ isVisible, quantity, handleOnClose }: TProps) => {
       return null;
     };
     const getProductsFromDB = async () => {
-      const productsIDs = localCartItems.items.map((s) => s.productId);
+      const productsIDs = localCartItems.items.map((s: { productId: string }) => s.productId);
 
       if (productsIDs?.length === 0) setCartItems([]);
 

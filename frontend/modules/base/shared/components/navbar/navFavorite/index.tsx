@@ -1,4 +1,4 @@
-import { HeartIcon } from "@/shared/components/icons/svgIcons";
+import { HeartIcon } from "@/components/icons/svgIcons";
 
 const NavBarFavorite = () => {
   return (

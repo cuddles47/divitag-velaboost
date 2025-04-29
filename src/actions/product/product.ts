@@ -2,7 +2,7 @@
 import { ProductSpec } from "@prisma/client";
 import { z } from "zod";
 
-import { db } from "@/shared/lib/db";
+import { db } from "../../../backend/core/lib/db";
 import {
   TAddProductFormValues,
   TCartListItemDB,

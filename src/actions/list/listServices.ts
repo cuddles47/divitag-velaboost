@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { TFilters, TListItem } from "@/domains/store/productList/types";
 import { TListSort } from "@/domains/store/productList/types/";
-import { db } from "@/shared/lib/db";
+import { db } from "../../../backend/core/lib/db";
 import { TProductPath } from "@/shared/types/product";
 
 const ValidateSort = z.object({
@@ -122,21 +122,21 @@ const getProductsByCategories = async (categories: string[], sortData: TListSort
           },
           isAvailable !== null
             ? {
-                isAvailable: isAvailable,
-              }
+              isAvailable: isAvailable,
+            }
             : {},
           brands
             ? {
-                brandID: { in: brands },
-              }
+              brandID: { in: brands },
+            }
             : {},
           !isInitialPrice
             ? {
-                price: {
-                  gt: filters.priceMinMax[0],
-                  lte: filters.priceMinMax[1],
-                },
-              }
+              price: {
+                gt: filters.priceMinMax[0],
+                lte: filters.priceMinMax[1],
+              },
+            }
             : {},
         ],
       },

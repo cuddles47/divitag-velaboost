@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { cn } from "@/shared/utils/styling";
+import { cn } from "@/utils/styling";
 
 import { TWideCard } from "../../types";
 

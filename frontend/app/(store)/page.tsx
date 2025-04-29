@@ -9,8 +9,8 @@ import {
   TodayDealCards,
   TopSellingProductsList,
   WideCardRow,
-} from "@/domains/store/homePage/components";
-import { threeSaleCards, twoSaleCards } from "@/domains/store/homePage/constants";
+} from "../../modules/base/homePage/components";
+import { threeSaleCards, twoSaleCards } from "../../modules/base/homePage/constants";
 
 export const metadata: Metadata = {
   title: "BITEX - Homepage",

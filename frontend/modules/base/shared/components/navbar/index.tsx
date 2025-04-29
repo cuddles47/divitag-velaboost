@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { cn } from "@/shared/utils/styling";
+import { cn } from "@/utils/styling";
 
 import AddVisit from "../addVisit";
 

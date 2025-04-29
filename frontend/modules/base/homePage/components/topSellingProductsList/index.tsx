@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import ProductCard from "@/domains/product/components/productCard";
-import { TopProducts } from "@/domains/product/constants";
+import { TopProducts, Product } from "@/domains/product/constants";
 
 export const TopSellingProductsList = () => {
   return (
@@ -11,10 +11,10 @@ export const TopSellingProductsList = () => {
         <Link href={"/"}>view all</Link>
       </div>
       <div className="flex justify-between gap-3.5 overflow-x-scroll pb-7 2xl:pb-2 2xl:overflow-x-visible">
-        {TopProducts.map((product, index) => (
+        {TopProducts.map((product: Product, index: number) => (
           <ProductCard
             name={product.name}
-            imgUrl={product.imgUrl}
+            imgUrl={Array.isArray(product.imgUrl) ? product.imgUrl[0] : product.imgUrl}
             price={product.price}
             specs={product.specs}
             url={product.url}

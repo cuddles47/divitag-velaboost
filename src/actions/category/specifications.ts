@@ -1,7 +1,7 @@
 "use server";
 import { SpecGroup } from "@prisma/client";
 
-import { db } from "@/shared/lib/db";
+import { db } from "../../../backend/core/lib/db";
 
 export const getCategorySpecs = async (categoryID: string) => {
   if (!categoryID || categoryID === "") return { error: "Invalid Category ID" };

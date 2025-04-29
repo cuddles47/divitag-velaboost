@@ -4,13 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-import { ClockIcon } from "@/shared/components/icons/svgIcons";
+import { ClockIcon } from "@/components/icons/svgIcons";
 
 type TProps = {
   productName: string;
   newPrice: number;
   oldPrice: number;
-  image: [string, string];
+  image: string[];
   dealEndTime: Date;
   spec?: string[];
   url: string;
@@ -37,13 +37,15 @@ const TodayDealCard = ({ productName, newPrice, oldPrice, image, dealEndTime, sp
           sizes="(max-width:240px)"
           className="object-contain transition-all duration-400 ease-out"
         />
-        <Image
-          alt=""
-          src={image[1]}
-          fill
-          sizes="(max-width:240px)"
-          className="object-contain transition-all duration-400 ease-out opacity-0 scale-[0.9]"
-        />
+        {image.length > 1 && (
+          <Image
+            alt=""
+            src={image[1]}
+            fill
+            sizes="(max-width:240px)"
+            className="object-contain transition-all duration-400 ease-out opacity-0 scale-[0.9]"
+          />
+        )}
       </Link>
       <div className="absolute top-5 left-5 rounded-md px-2 py-1 bg-bitex-red-500 text-sm text-white">
         <span>Save {saveAmount.toLocaleString("en-us", { minimumFractionDigits: 2 })} €</span>

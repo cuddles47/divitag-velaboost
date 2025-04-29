@@ -4,9 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { SlidesData } from "@/domains/store/homePage/constants/";
-import { ArrowIcon } from "@/shared/components/icons/svgIcons";
-import { cn } from "@/shared/utils/styling";
+import { SlidesData } from "@/modules/base/homePage/constants/homepageData";
+import { ArrowIcon } from "@/components/icons/svgIcons";
+import { cn } from "@/utils/styling";
+
+// Define types for slide data
+type SlideMessage = {
+  title: string;
+  desc?: string;
+  buttonText: string;
+};
+
+type TSlide = {
+  imgUrl: string;
+  url: string;
+  msg?: SlideMessage;
+};
 
 export const HomeSlider = () => {
   const [activeSlideNum, setActiveSlideNum] = useState(0);

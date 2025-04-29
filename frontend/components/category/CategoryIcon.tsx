@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '@/shared/components/UI/Icon';
+import Icon from '@/components/UI/Icon';
 
 interface CategoryIconProps {
     iconName: string;

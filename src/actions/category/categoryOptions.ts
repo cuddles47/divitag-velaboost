@@ -3,7 +3,7 @@
 import { OptionSetType } from "@prisma/client";
 import { z } from "zod";
 
-import { db } from "@/shared/lib/db";
+import { db } from "../../../backend/core/lib/db";
 import { TOptionSet, TSingleOption, TSingleSpec, TSpecGroup } from "@/shared/types/common";
 
 const AddOptionSet = z.object({

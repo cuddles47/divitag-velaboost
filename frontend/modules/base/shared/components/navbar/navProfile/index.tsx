@@ -4,10 +4,10 @@ import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 
-import { ProfileIcon } from "@/shared/components/icons/svgIcons";
-import Button from "@/shared/components/UI/button";
-import { useToggleMenu } from "@/shared/hooks/useToggleMenu";
-import { cn } from "@/shared/utils/styling";
+import { ProfileIcon } from "../../../../../../components/icons/svgIcons";
+import Button from "../../../../../../components/UI/button";
+import { useToggleMenu } from "../../../../../../../src/shared/hooks/useToggleMenu";
+import { cn } from "../../../../../../utils/styling";
 
 const NavBarProfile = () => {
   const { data: session } = useSession();
@@ -16,7 +16,7 @@ const NavBarProfile = () => {
   const [isActive, setIsActive] = useToggleMenu(false, menuRef);
 
   const toggleMenu = () => {
-    setIsActive((prev) => !prev);
+    setIsActive((prev: boolean) => !prev);
   };
 
   const handleSignIn = () => {

@@ -1,4 +1,4 @@
-import { BlogCardData } from "@/domains/store/homePage/constants/";
+import { BlogCardData, BlogCard } from "@/domains/store/homePage/constants";
 
 import HomeBlogCard from "./BlogCard";
 
@@ -9,7 +9,7 @@ export const LatestBlogPosts = () => {
         <h2 className="text-2xl font-medium text-gray-700">Latest Posts</h2>
       </div>
       <div className="flex gap-6 flex-col md:flex-row">
-        {BlogCardData.map((blog, index) => (
+        {BlogCardData.map((blog: BlogCard, index: number) => (
           <HomeBlogCard key={index} imgUrl={blog.imgUrl} title={blog.title} shortText={blog.shortText} url={blog.url} />
         ))}
       </div>

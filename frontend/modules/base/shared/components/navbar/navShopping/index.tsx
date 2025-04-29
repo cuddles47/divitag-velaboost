@@ -1,13 +1,21 @@
-"use-client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import ShoppingCart from "@/domains/store/shoppingCard/components/shoppingCart";
-import { ShoppingIconOutline } from "@/shared/components/icons/svgIcons";
-import { cn } from "@/shared/utils/styling";
-import { TCartState, RootState } from "@/store/shoppingCart";
-import { toggleCart } from "@/store/shoppingCart";
+import ShoppingCart from "../../../../../base/shoppingCard/components/shoppingCart";
+import { ShoppingIconOutline } from "../../../../../../components/icons/svgIcons";
+import { cn } from "../../../../../../utils/styling";
+import { RootState, toggleCart } from "../../../../../../../src/store/shoppingCart";
+
+// Define the TCartState type locally since importing fails
+type TCartState = {
+  items: Array<{
+    productId: string;
+    quantity: number;
+  }>;
+  isVisible: boolean;
+};
 
 const NavBarShopping = () => {
   const dispatch = useDispatch();
@@ -22,7 +30,7 @@ const NavBarShopping = () => {
   }, [localCartData]);
 
   if (cartData && cartData.items.length > 0) {
-    cartData.items.map((item) => (cartItemQuantity += item.quantity));
+    cartData.items.map((item: any) => (cartItemQuantity += item.quantity));
   }
 
   const handleCartVisibility = (visibility: boolean) => {

@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { getAllCategoriesJSON } from "@/actions/category/category";
-import { ListIcon } from "@/shared/components/icons/svgIcons";
-import Button from "@/shared/components/UI/button";
-import { useToggleMenu } from "@/shared/hooks/useToggleMenu";
-import { TGroupJSON } from "@/shared/types/categories";
-import { cn } from "@/shared/utils/styling";
+import { getAllCategoriesJSON } from "../../../../../../../src/actions/category/category";
+import { ListIcon } from "../../../../../../components/icons/svgIcons";
+import Button from "../../../../../../components/UI/button";
+import { useToggleMenu } from "../../../../../../../src/shared/hooks/useToggleMenu";
+import { TGroupJSON } from "../../../../../../types/categories";
+import { cn } from "../../../../../../utils/styling";
 
 type TProps = {
   isNavbarVisible: boolean;
@@ -55,8 +55,7 @@ const NavBarCategory = ({ isNavbarVisible: isNavbarHide }: TProps) => {
         className={cn(
           "absolute left-0 top-10 w-64 rounded-lg border border-gray-300 bg-white/90 backdrop-blur-md shadow-lg overflow-hidden transition-all duration-300 transform",
           isActive ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"
-        )}
-      >
+        )}>
         {categories.map((item, index) => (
           <Link
             key={index}

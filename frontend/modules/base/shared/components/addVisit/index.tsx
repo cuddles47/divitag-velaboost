@@ -3,8 +3,37 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-import { addVisit } from "@/actions/pageVisit/pageVisitServices";
-import { TAddPageVisit } from "@/shared/types/common";
+// Create local types to avoid import issues
+type PageType = "MAIN" | "LIST" | "PRODUCT";
+
+type TAddPageVisit = {
+  pageType: PageType;
+  pagePath?: string;
+  productID?: string;
+  deviceResolution?: string;
+};
+
+// Create a local implementation of addVisit to avoid import issues
+const addVisit = async (data: TAddPageVisit) => {
+  try {
+    const response = await fetch('/api/page-visit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      return { error: 'Failed to add visit' };
+    }
+
+    const result = await response.json();
+    return { res: result };
+  } catch (error) {
+    return { error: JSON.stringify(error) };
+  }
+};
 
 const AddVisit = () => {
   const pathName = usePathname();

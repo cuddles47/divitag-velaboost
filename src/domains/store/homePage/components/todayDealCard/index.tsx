@@ -8,7 +8,7 @@ export const TodayDealCards = () => {
   return (
     <div className="w-full mt-14">
       <div className="flex w-full justify-between items-center mb-7">
-        <h2 className="text-2xl font-medium text-gray-700">Today’s Deals</h2>
+        <h2 className="text-2xl font-medium text-gray-700">Today's Deals</h2>
         <Link
           href={""}
           className="font-medium bg-[position:right_center] hover:pr-5 pr-6 text-gray-700 bg-[url('/icons/arrowIcon02.svg')] bg-no-repeat bg-right-center transition-all duration-300 ease-out"

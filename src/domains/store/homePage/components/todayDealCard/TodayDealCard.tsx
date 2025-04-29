@@ -10,7 +10,7 @@ type TProps = {
   productName: string;
   newPrice: number;
   oldPrice: number;
-  image: [string, string];
+  image: string[];
   dealEndTime: Date;
   spec?: string[];
   url: string;

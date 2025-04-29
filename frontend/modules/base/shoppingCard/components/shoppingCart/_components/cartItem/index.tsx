@@ -3,9 +3,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 
-import { DeleteIcon } from "@/shared/components/icons/svgIcons";
-import { TCartItemData } from "@/shared/types/shoppingCart";
-import { modifyQuantity, remove } from "@/store/shoppingCart";
+import { DeleteIcon } from "../../../../../../../components/icons/svgIcons";
+import { TCartItemData } from "../../../../../../../types/shoppingCart";
+import { modifyQuantity, remove } from "../../../../../../../../src/store/shoppingCart";
 
 import Quantity from "../../../quantity";
 
@@ -53,8 +53,8 @@ const CartItem = ({ data, onLinkClicked }: TProps) => {
           <span className="text-sm text-gray-500 ml-3">
             {quantity > 1
               ? `${quantity} x ${currentPrice.toLocaleString("en-us", {
-                  maximumFractionDigits: 2,
-                })} €`
+                maximumFractionDigits: 2,
+              })} €`
               : ""}{" "}
           </span>
         </div>

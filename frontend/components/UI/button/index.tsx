@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/shared/utils/styling";
+import { cn } from "@/utils/styling";
 
 type TProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   type?: "button" | "reset" | "submit";
